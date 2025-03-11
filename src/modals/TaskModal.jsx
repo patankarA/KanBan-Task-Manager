@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ElipsisMenu from "../components/ElipsisMenu";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import boardsSlice from "../redux/boardsSlice";
-import Subtask from "../components/SubTask";
+import Subtask from "../components/subTask";
 import AddEditTaskModal from "./AddEditTaskModal";
 import DeleteModal from "./DeleteModal";
 
