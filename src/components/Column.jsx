@@ -24,6 +24,7 @@ function Column({ colIndex }) {
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive === true);
   const col = board.columns.find((col, i) => i === colIndex);
+
   useEffect(() => {
     setColor(shuffle(colors).pop())
   }, [dispatch]);
@@ -34,6 +35,8 @@ function Column({ colIndex }) {
     const { prevColIndex, taskIndex } = JSON.parse(
       e.dataTransfer.getData("text")
     );
+    console.log(taskIndex, prevColIndex, colIndex);
+    
 
     if (colIndex !== prevColIndex) {
       dispatch(

@@ -4,8 +4,11 @@ import data from '../data.json'
 const boardsSlice = createSlice({
   name: 'boards',
   initialState: data.boards,
+
+  // write our reducers
   reducers: {
-    // write our reducers
+
+    // addBoard
     addBoard: (state, action) => {
       const isActive = state.length > 0 ? false : true;
       const payload = action.payload;
@@ -18,17 +21,21 @@ const boardsSlice = createSlice({
       state.push(board);
     },
 
+    // editBoard
     editBoard: (state, action) => {
       const payload = action.payload;
       const board = state.find((board) => board.isActive);
       board.name = payload.name;
       board.columns = payload.newColumns;
     },
+
+    // deleteBoard
     deleteBoard: (state) => {
       const board = state.find((board) => board.isActive);
       state.splice(state.indexOf(board), 1);
     },
 
+    // setBoardActive
     setBoardActive: (state, action) => {
       state.map((board, index) => {
         index === action.payload.index
@@ -38,6 +45,7 @@ const boardsSlice = createSlice({
       });
     },
 
+    // addTask
     addTask: (state, action) => {
       const { title, status, description, subtasks, newColIndex } =
         action.payload;
@@ -47,6 +55,7 @@ const boardsSlice = createSlice({
       column.tasks.push(task);
     },
 
+    // addTask
     editTask: (state, action) => {
       const {
         title,
@@ -70,6 +79,7 @@ const boardsSlice = createSlice({
       newCol.tasks.push(task);
     },
 
+    // dragTask
     dragTask: (state, action) => {
       const { colIndex, prevColIndex, taskIndex } = action.payload;
       const board = state.find((board) => board.isActive);
@@ -78,6 +88,7 @@ const boardsSlice = createSlice({
       board.columns.find((col, i) => i === colIndex).tasks.push(task);
     },
 
+    // setSubtaskCompleted
     setSubtaskCompleted: (state, action) => {
       const payload = action.payload;
       const board = state.find((board) => board.isActive);
@@ -87,6 +98,7 @@ const boardsSlice = createSlice({
       subtask.isCompleted = !subtask.isCompleted;
     },
 
+    // setTaskStatus
     setTaskStatus: (state, action) => {
       const payload = action.payload;
       const board = state.find((board) => board.isActive);
@@ -100,6 +112,7 @@ const boardsSlice = createSlice({
       newCol.tasks.push(task);
     },
 
+    // deleteTask
     deleteTask: (state, action) => {
       const payload = action.payload;
       const board = state.find((board) => board.isActive);
